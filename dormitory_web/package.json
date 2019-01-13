@@ -10,7 +10,16 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "vue": "^2.5.11"
+    "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
+    "dotenv-webpack": "^1.6.0",
+    "es6-promise": "^4.2.5",
+    "event-source-polyfill": "^1.0.5",
+    "promise-polyfill": "^8.1.0",
+    "vue": "^2.5.11",
+    "vue-meta": "^1.5.8",
+    "vue-router": "^3.0.2",
+    "vuex": "^3.0.1"
   },
   "browserslist": [
     "> 1%",
