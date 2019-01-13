@@ -10,6 +10,9 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'build.js'
   },
+  // plugins: [
+  //   new Dotenv()
+  // ],
   module: {
     rules: [
       {
@@ -18,11 +21,45 @@ module.exports = {
           'vue-style-loader',
           'css-loader'
         ],
-      },      {
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader'
+        ],
+      },
+      {
+        test: /\.sass$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader?indentedSyntax'
+        ],
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
           loaders: {
+            'scss': [
+              'vue-style-loader',
+              'css-loader',
+              {
+                loader: 'sass-loader',
+                // options: {
+                //   data: `
+                //     @import "./src/style/style.scss";
+                //   `
+                // }
+              }
+            ],
+            'sass': [
+              'vue-style-loader',
+              'css-loader',
+              'sass-loader?indentedSyntax'
+            ]
           }
           // other vue-loader options go here
         }
@@ -38,12 +75,18 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.pug$/,
+        loader: 'pug-plain-loader'
       }
     ]
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      "@": path.join(__dirname, "/src"),
+      "@components": path.join(__dirname, "/src/components"),
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
