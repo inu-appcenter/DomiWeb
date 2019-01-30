@@ -1,18 +1,12 @@
 <template>
   <div id="app">
-    <Sum></Sum>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Sum from './Page/Sum'
-
 export default {
   name: 'app',
-  
-  components: {
-    Sum
-  }
 }
 </script>
 

@@ -48,11 +48,11 @@ module.exports = {
               'css-loader',
               {
                 loader: 'sass-loader',
-                // options: {
-                //   data: `
-                //     @import "./src/style/style.scss";
-                //   `
-                // }
+                options: {
+                  data: `
+                    @import "./src/style/style.scss";
+                  `
+                }
               }
             ],
             'sass': [
