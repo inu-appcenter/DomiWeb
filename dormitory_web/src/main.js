@@ -5,8 +5,8 @@ import 'promise-polyfill/src/polyfill'
 
 import Vue from 'vue'
 import axios from 'axios'
-import router from './routes'
-import App from './App.vue'
+import App from '@/App.vue'
+import router from '@/routes'
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
