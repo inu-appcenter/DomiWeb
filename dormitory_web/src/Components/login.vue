@@ -1,13 +1,13 @@
 <template>
     <div class="form-group" id="passwordForm">
         <template v-if="login">
-             <input v-model="input" type="password" class="form-control" placeholder="패스워드"><br>
-             <small id="emailHelp" class="form-text text-muted">{{sub_explain}}</small><br><br>
-             <button @click="loginValidate()" type="submit" class="btn btn-primary">{{btn_text}}</button>
+                <input v-model="input" type="password" class="form-control" placeholder="패스워드"><br>
+                <small id="emailHelp" class="form-text text-muted">{{sub_explain}}</small><br><br>
+                <button @click="loginValidate()" type="submit" class="btn-primary">{{btn_text}}</button>
         </template>
         <template v-else>
             <small id="emailHelp" class="form-text text-muted">{{sub_explain}}</small><br><br>
-            <button @click="loginValidate()" type="submit" class="btn btn-primary">{{btn_text}}</button>
+            <button @click="loginValidate()" type="submit" class="btn-primary">{{btn_text}}</button>
         </template>
     </div>
 

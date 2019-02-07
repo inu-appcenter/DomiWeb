@@ -1,8 +1,8 @@
 <template>
     <div id="calender">
-        <button @click="lastweek()">{{btn_lastweek}}</button>
-        <p>{{week1}}~{{week2}}</p>
-        <button @click="nextweek()">{{btn_nextweek}}</button>
+        <button @click="lastweek()" class="btn-last">{{btn_lastweek}}</button>
+        <span class="week">{{week1}}_{{week2}}</span>
+        <button @click="nextweek()" class="btn-next">{{btn_nextweek}}</button><br>
     </div>
 </template>
 
