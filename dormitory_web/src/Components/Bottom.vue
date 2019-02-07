@@ -1,20 +1,9 @@
 <template>
     <div id="Bottom">
         <h3>식단 입력</h3>
+        <calender></calender>
         <h3>메모 작성</h3>
         <textarea v-model="addinfo" class="addinfo"></textarea>
-
-
-        <table>
-            <tr>
-                <td>Mon</td> <td>Tue</td> <td>Wed</td> <td>Thu</td> <td>Fri</td> <td>Sat</td>
-            </tr>
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-            </tr>
-        </table>
-
-
         <div class="save">
             <button v-on:click="imgsave" class="imgsave">이미지로 저장하기</button>
             <button v-on:click="svsave" class="svsave">서버에 저장하기</button>
@@ -23,8 +12,14 @@
 </template>
 
 <script>
+import calender from './calender'
+
 export default {
-    name: 'Bottom'
+    name: 'Bottom',
+
+    components: {
+        calender
+    }
 }
 </script>
 
