@@ -9,7 +9,6 @@
 .INU-Appcenter {
     width: 330px;
     height: 70px;
-    font-family: SFProDisplay;
     font-size: 38px;
     font-weight: bold;
     font-style: normal;
@@ -25,7 +24,6 @@
 .info {
     width: 565px;
     height: 84px;
-    font-family: NotoSansCJKkr;
     font-size: 17px;
     font-weight: normal;
     font-style: normal;
@@ -48,7 +46,6 @@
     width: 292px;
     height: 34px;
     background-color: #ffffff;
-    font-family: SFProDisplay;
     font-size: 18px;
     font-weight: normal;
     font-style: normal;
@@ -64,7 +61,6 @@
 .btn-primary {
     width: 126px;
     height: 34px;
-    font-family: SFProDisplay;
     font-size: 18px;
     font-weight: normal;
     font-style: normal;
@@ -89,7 +85,6 @@
 .menutitle {
     width: 375px;
     height: 33px;
-    font-family: NotoSansCJKkr;
     font-size: 22px;
     font-weight: 500;
     font-style: normal;
@@ -103,13 +98,12 @@
 
 #calender {
     margin-top: 11px;
-    text-align: center;  
+    text-align: center;
 }
 
 .btn-last, .btn-next {
     width: 72px;
     height: 19px;
-    font-family: NotoSansCJKkr;
     font-size: 13px;
     font-weight: normal;
     font-style: normal;
@@ -125,7 +119,6 @@
 .week {
     width: 375px;
     height: 24px;
-    font-family: SFProDisplay;
     font-size: 20px;
     font-weight: 500;
     font-style: normal;
@@ -144,7 +137,6 @@
     margin-bottom: 16px;
     width: 375px;
     height: 33px;
-    font-family: NotoSansCJKkr;
     font-size: 22px;
     font-weight: 500;
     font-style: normal;
@@ -179,7 +171,6 @@
 
 #emailHelp {
     margin-top: 1px;
-    font-family: NotoSansCJKkr;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;

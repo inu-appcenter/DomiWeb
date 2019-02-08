@@ -12,8 +12,11 @@ export default {
   name: 'app',
 
   components: {
-    Sum
+    Sum,
   }
 }
 </script>
 
+<style lang="scss">
+
+</style>
