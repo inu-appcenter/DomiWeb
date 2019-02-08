@@ -62,6 +62,7 @@
     width: 126px;
     height: 34px;
     font-size: 18px;
+    background-color: #ffffff;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -70,7 +71,7 @@
     text-align: center;
     color: #000000;
     border-radius: 30px;
-    margin-top: 18px;
+    margin-top: 16px;
 }
 
 #Bottom {
