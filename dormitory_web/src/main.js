@@ -7,8 +7,10 @@ import Vue from 'vue'
 import axios from 'axios'
 import App from '@/App.vue'
 import router from '@/routes'
-
 import Vuex from 'vuex'
+
+Vue.prototype.$http = axios
+
 
 Vue.use(Vuex)
 

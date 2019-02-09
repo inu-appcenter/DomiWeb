@@ -134,7 +134,7 @@
 
 .memotitle {
     margin: 0 auto;
-    margin-top: 39px;
+    margin-top: 25px;
     margin-bottom: 16px;
     width: 375px;
     height: 33px;
@@ -176,4 +176,51 @@
     font-style: normal;
     font-stretch: normal;
     color: #ffffff
+}
+
+section {
+    margin-top: 51px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+section > nav {
+    margin: 0 7.8px 0 7.8px;
+}
+
+
+nav h4{
+    margin: 0px 0px 13px 0px;
+    width: auto;
+    height: 19px;
+    font-family: SFProDisplay;
+    font-size: 16px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #000000;
+}
+
+nav textarea {
+    width: 123px;
+    height: 193px;
+    background-color: #ededed;
+    padding: 19px 6px 20px 5px;
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.57;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 14px;
+    border-radius: 10px;
 }

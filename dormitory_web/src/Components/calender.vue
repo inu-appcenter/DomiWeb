@@ -3,6 +3,14 @@
         <button @click="lastweek()" class="btn-last" data-html2canvas-ignore="true">{{btn_lastweek}}</button>
         <span class="week">{{week1}}_{{week2}}</span>
         <button @click="nextweek()" class="btn-next" data-html2canvas-ignore="true">{{btn_nextweek}}</button><br>
+        <section class="menu-area">
+            <nav><h4>Mon</h4><textarea v-model="basic_mon_lunch"></textarea><br><textarea v-model="basic_mon_dinner"></textarea></nav>
+            <nav><h4>Tue</h4><textarea v-model="basic_tue_lunch"></textarea><br><textarea v-model="basic_tue_dinner"></textarea></nav>
+            <nav><h4>Wed</h4><textarea v-model="basic_wed_lunch"></textarea><br><textarea v-model="basic_wed_dinner"></textarea></nav>
+            <nav><h4>Thu</h4><textarea v-model="basic_thu_lunch"></textarea><br><textarea v-model="basic_thu_dinner"></textarea></nav>
+            <nav><h4>Fri</h4><textarea v-model="basic_fri_lunch"></textarea><br><textarea v-model="basic_fri_dinner"></textarea></nav>
+            <nav><h4>Sat</h4><textarea v-model="basic_sat_lunch"></textarea><br><textarea v-model="basic_sat_dinner"></textarea></nav>
+        </section>
     </div>
 </template>
 
@@ -12,16 +20,15 @@ var today = new Date() // 0000.00.00 ~ 0000.00.00 앞부분
 var after = new Date() // 0000.00.00 ~ 0000.00.00 뒷부분
 
 export default {
-    name: "calender",
+    name: "menu-area",
 
-    created(){
-        
+    created(){        
         var dateOffset = (24*60*60*1000) * 6
 
-        //현재주의 월요일 날짜
-        var mon = today.getDay() || 7;
-        if( mon !== 1){
-            today.setHours(-24 * (mon-1));
+        //today ==> 현재주의 월요일 날짜
+        var mon_compare = today.getDay() || 7;
+        if( mon_compare !== 1){
+            today.setHours(-24 * (mon_compare-1));
         }
 
         var dd1 = today.getDate()
@@ -51,7 +58,7 @@ export default {
             mm2='0'+mm2
         }
 
-        this.week2 = yyyy2+'.'+mm2+'.'+dd2
+        this.week2 = yyyy2+'.'+mm2+'.'+dd2       
 
     },
 
@@ -61,6 +68,18 @@ export default {
             btn_nextweek: '다음주   >',
             week1: '',
             week2: '',
+            basic_mon_lunch: '',
+            basic_tue_lunch: '',
+            basic_wed_lunch: '',
+            basic_thu_lunch: '',
+            basic_fri_lunch: '',
+            basic_sat_lunch: '',
+            basic_mon_dinner: '',
+            basic_tue_dinner: '',
+            basic_wed_dinner: '',
+            basic_thu_dinner: '',
+            basic_fri_dinner: '',
+            basic_sat_dinner: '',
         }
     },
 
@@ -72,9 +91,9 @@ export default {
 
             today.setTime(today.getTime() - dateOffset2)
                        
-            var mon = today.getDay() || 7;
-            if( mon !== 1){
-                today.setHours(-24 * (mon-1));
+            var mon_compare = today.getDay() || 7;
+            if( mon_compare !== 1){
+                today.setHours(-24 * (mon_compare-1));
             }
 
             var dd1 = today.getDate()
@@ -112,9 +131,9 @@ export default {
 
             today.setTime(today.getTime() + dateOffset2)
                        
-            var mon = today.getDay() || 7;
-            if( mon !== 1){
-                today.setHours(-24 * (mon-1));
+            var mon_compare = today.getDay() || 7;
+            if( mon_compare !== 1){
+                today.setHours(-24 * (mon_compare-1));
             }
 
             var dd1 = today.getDate()
