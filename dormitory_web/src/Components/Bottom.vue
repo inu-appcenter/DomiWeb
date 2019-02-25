@@ -100,15 +100,82 @@ export default {
     methods: {
         getOneDayMenu(){
             var self = this
+            var setlunch
+            var setdinner
 
-            axios.get('http://117.16.191.242:5630/read/date',
-            {date: self.for_menu_date})
-            .then(function(response) {
-                self.basic_mon_lunch = response.data[0].TITLE + '\n' + response.data[0].MENU + '\n' + response.data[0].order
-                })
-                .catch(function(error) {
-                    console.log(error)
-                    })
+            for(var six = 0 ; six <= 5 ; six ++ ){
+
+                self.plusOneday()                
+                
+                switch(six){
+                    case 0:{
+                        axios.get('http://117.16.191.242:5630/read/date',{date: this.for_menu_date})
+                        .then(function(response) {
+                            self.basic_mon_lunch = response.data[0].TITLE
+                            self.basic_mon_dinner = response.data[1].TITLE                                        
+                        console.log(response)
+                        })
+                        .catch(function(error) {
+                            console.log(error)
+                            })
+                    }
+                    case 1:{
+                        axios.get('http://117.16.191.242:5630/read/date',{date: this.for_menu_date})
+                        .then(function(response) {
+                            self.basic_tue_lunch = response.data[0].TITLE
+                            self.basic_tue_dinner = response.data[1].TITLE                                        
+                        console.log(response)
+                        })
+                        .catch(function(error) {
+                            console.log(error)
+                            })
+                    }
+                    case 2:{
+                        axios.get('http://117.16.191.242:5630/read/date',{date: this.for_menu_date})
+                        .then(function(response) {
+                            self.basic_wed_lunch = response.data[0].TITLE
+                            self.basic_wed_dinner = response.data[1].TITLE                                        
+                        console.log(response)
+                        })
+                        .catch(function(error) {
+                            console.log(error)
+                            })
+                    }
+                    case 3:{
+                        axios.get('http://117.16.191.242:5630/read/date',{date: this.for_menu_date})
+                        .then(function(response) {
+                            self.basic_thu_lunch = response.data[0].TITLE
+                            self.basic_thu_dinner = response.data[1].TITLE                                        
+                        console.log(response)
+                        })
+                        .catch(function(error) {
+                            console.log(error)
+                            })
+                    }
+                    case 4:{
+                        axios.get('http://117.16.191.242:5630/read/date',{date: this.for_menu_date})
+                        .then(function(response) {
+                            self.basic_fri_lunch = response.data[0].TITLE
+                            self.basic_fri_dinner = response.data[1].TITLE                                        
+                        console.log(response)
+                        })
+                        .catch(function(error) {
+                            console.log(error)
+                            })
+                    }
+                    case 5:{
+                        axios.get('http://117.16.191.242:5630/read/date',{date: this.for_menu_date})
+                        .then(function(response) {
+                            self.basic_sat_lunch = response.data[0].TITLE
+                            self.basic_sat_dinner = response.data[1].TITLE                                        
+                        console.log(response)
+                        })
+                        .catch(function(error) {
+                            console.log(error)
+                            })
+                    } 
+                }                   
+            }
         },
 
         imgsave() {
@@ -130,7 +197,7 @@ export default {
         setStartDate(day){
             var month_compare = day.getDay() || 7
             this.lastWeekToday = day
-            if( month_compare !== 1){
+            if(month_compare !== 1){
                 day.setHours(-24 * (month_compare-1))}
 
 
@@ -203,6 +270,19 @@ export default {
             this.for_menu_date = this.startDate.replace(/[.]/g,'')
 
             this.getOneDayMenu()
+        },
+
+        plusOneday(){
+            var day = new Date(this.temporary_today)
+            var current_day = new Date(day.getTime() + (1 * 24 * 60 * 60 * 1000))
+            var date = current_day.getDate()
+            var month = current_day.getMonth() + 1
+            var year = current_day.getFullYear()
+
+            var standard_day = new Date(year + '/' + month + '/' + date)
+            this.setStartDate(standard_day)
+            this.setEndDate(standard_day)
+            this.for_menu_date = this.startDate.replace(/[.]/g,'')
         }
     },
 
