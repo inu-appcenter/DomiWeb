@@ -1,13 +1,13 @@
 <template>
     <div class="form-group" id="passwordForm">
         <template v-if="login">
-             <input v-model="input" type="password" class="form-control" placeholder="패스워드"><br>
-             <small id="emailHelp" class="form-text text-muted">{{sub_explain}}</small><br><br>
-             <button @click="loginValidate()" type="submit" class="btn btn-primary">{{btn_text}}</button>
+                <input v-model="input" type="password" class="form-control" placeholder="패스워드"><br>
+                <small id="emailHelp" class="form-text text-muted">{{sub_explain}}</small><br><br>
+                <button @click="loginValidate()" type="submit" class="btn-primary">{{btn_text}}</button>
         </template>
         <template v-else>
             <small id="emailHelp" class="form-text text-muted">{{sub_explain}}</small><br><br>
-            <button @click="loginValidate()" type="submit" class="btn btn-primary">{{btn_text}}</button>
+            <button @click="loginValidate()" type="submit" class="btn-primary">{{btn_text}}</button>
         </template>
     </div>
 
@@ -26,8 +26,8 @@ export default {
     data: function(){
         return{
             btn_text: '', //버튼 텍스트
-            btn_longin: '로그인', //로그인 상수
-            btn_logout: '로그아웃', //로그아웃 상수
+            btn_longin: 'LOG IN', //로그인 상수
+            btn_logout: 'LOG OUT', //로그아웃 상수
             sub_explain: '로그인을 위해 패스워드를 입력해주세요!', //부가 설명 부분
             input: '', //패스워드 입력 부분
             password: 'appcen', //패스워드 상수

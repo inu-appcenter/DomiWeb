@@ -7,9 +7,13 @@
 
 <script>
 import Sum from './Page/Sum'
+import axios from 'axios'
 
 export default {
   name: 'app',
+
+  created: function(){
+  },
 
   components: {
     Sum
