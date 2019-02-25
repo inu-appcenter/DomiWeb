@@ -1,20 +1,32 @@
 <template>
+
     <div id="Top">
+
         <h1 class="INU-Appcenter">INU Appcenter</h1>
         <h2 class="info">제 2기숙사 급식 관리 페이지입니다<br/>식단 작성 및 수정을 원하시면 관리자 비밀번호를 입력해주세요</h2>
 
+        <!-- 로그인 구현 -->
         <div class="form-group" id="passwordForm">
-        <template v-if="login">
+
+            <template v-if="login">
+
                 <input v-model="input" type="password" class="form-control" placeholder="패스워드"><br>
                 <small id="emailHelp" class="form-text text-muted">{{sub_explain}}</small><br><br>
                 <button @click="loginValidate()" type="submit" class="btn-primary">{{btn_text}}</button>
-        </template>
-        <template v-else>
-            <small id="emailHelp" class="form-text text-muted">{{sub_explain}}</small><br><br>
-            <button @click="loginValidate()" type="submit" class="btn-primary">{{btn_text}}</button>
-        </template>
+
+            </template>
+
+            <template v-else>
+
+                <small id="emailHelp" class="form-text text-muted">{{sub_explain}}</small><br><br>
+                <button @click="loginValidate()" type="submit" class="btn-primary">{{btn_text}}</button>
+                
+            </template>
+
+        </div>
+
     </div>
-    </div>
+
 </template>
 
 <script>

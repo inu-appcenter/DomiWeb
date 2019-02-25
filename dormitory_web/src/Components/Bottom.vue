@@ -1,77 +1,71 @@
 <template>
+
     <div id="Bottom">
+
         <h3 class="menutitle">식단 입력</h3>
         
+        <!-- 식단 캘린더 -->
         <div id="calender">
-        <button @click="lastweek()" class="btn-last" data-html2canvas-ignore="true">{{btn_lastweek}}</button>
-        <span class="week">{{week1}}_{{week2}}</span>
-        <button @click="nextweek()" class="btn-next" data-html2canvas-ignore="true">{{btn_nextweek}}</button><br>
-        <section class="menu-area">
-            <nav><h4>Mon</h4><textarea v-model="basic_mon_lunch"></textarea><br><textarea v-model="basic_mon_dinner"></textarea></nav>
-            <nav><h4>Tue</h4><textarea v-model="basic_tue_lunch"></textarea><br><textarea v-model="basic_tue_dinner"></textarea></nav>
-            <nav><h4>Wed</h4><textarea v-model="basic_wed_lunch"></textarea><br><textarea v-model="basic_wed_dinner"></textarea></nav>
-            <nav><h4>Thu</h4><textarea v-model="basic_thu_lunch"></textarea><br><textarea v-model="basic_thu_dinner"></textarea></nav>
-            <nav><h4>Fri</h4><textarea v-model="basic_fri_lunch"></textarea><br><textarea v-model="basic_fri_dinner"></textarea></nav>
-            <nav><h4>Sat</h4><textarea v-model="basic_sat_lunch"></textarea><br><textarea v-model="basic_sat_dinner"></textarea></nav>
-        </section>
+            <button @click="lastWeekEvent()" class="btn-last" data-html2canvas-ignore="true">{{btn_lastweek}}</button>
+            <span class="week">{{startDate}}_{{endDate}}</span>
+            <button @click="nextWeekEvent()" class="btn-next" data-html2canvas-ignore="true">{{btn_nextweek}}</button><br>
+            <section class="menu-area">
+                <nav>
+                    <h4>Mon</h4>
+                    <textarea v-model="basic_mon_lunch"></textarea><br>
+                    <textarea v-model="basic_mon_dinner"></textarea>
+                </nav>
+                <nav>
+                    <h4>Tue</h4>
+                    <textarea v-model="basic_tue_lunch"></textarea><br>
+                    <textarea v-model="basic_tue_dinner"></textarea>
+                </nav>
+                <nav>
+                    <h4>Wed</h4>
+                    <textarea v-model="basic_wed_lunch"></textarea><br>
+                    <textarea v-model="basic_wed_dinner"></textarea>
+                </nav>
+                <nav>
+                    <h4>Thu</h4>
+                    <textarea v-model="basic_thu_lunch"></textarea><br>
+                    <textarea v-model="basic_thu_dinner"></textarea>
+                </nav>
+                <nav>
+                    <h4>Fri</h4>
+                    <textarea v-model="basic_fri_lunch"></textarea><br>
+                    <textarea v-model="basic_fri_dinner"></textarea>
+                </nav>
+                <nav>
+                    <h4>Sat</h4>
+                    <textarea v-model="basic_sat_lunch"></textarea><br>
+                    <textarea v-model="basic_sat_dinner"></textarea>
+                </nav>
+            </section>
+
         </div>
 
         <h3 class="memotitle">메모 작성</h3>
         <textarea class="addinfo"></textarea>
+
         <div class="save">
             <button class="imgsave">이미지로 저장하기</button>
             <button class="svsave">서버에 저장하기</button>
-
         </div>
+
     </div>
+
 </template>
 
 <script>
 import Vue from 'vue'
 
-var today = new Date() // 0000.00.00 ~ 0000.00.00 앞부분
-var after = new Date() // 0000.00.00 ~ 0000.00.00 뒷부분
-
 export default {
     name: 'Bottom',
 
     created() {
-        var dateOffset = (24*60*60*1000) * 6
-
-        //today ==> 현재주의 월요일 날짜
-        var mon_compare = today.getDay() || 7;
-        if( mon_compare !== 1){
-            today.setHours(-24 * (mon_compare-1));
-        }
-
-        var dd1 = today.getDate()
-        var mm1 = today.getMonth()+1
-        var yyyy1 = today.getFullYear()
-
-        //yyyy.mm.dd
-        if(dd1<10) {
-            dd1='0'+dd1
-        }
-        if(mm1<10) {
-            mm1='0'+mm1
-        }
-
-        this.week1 = yyyy1+'.'+mm1+'.'+dd1
-
-        // yyyy1.mm1.dd1 ~ yyyy2.mm2.dd2
-        after.setTime(today.getTime() + dateOffset)
-        var dd2 = after.getDate();
-        var mm2 = after.getMonth() +1
-        var yyyy2 = after.getFullYear()
-
-        if(dd2<10) {
-            dd2='0'+dd2
-        }
-        if(mm2<10) {
-            mm2='0'+mm2
-        }
-
-        this.week2 = yyyy2+'.'+mm2+'.'+dd2
+        this.today = new Date()
+        this.setStartDate(this.today)
+        this.setEndDate(this.today)
     },
 
     data: function() {
@@ -79,8 +73,11 @@ export default {
             how: 'logout',
             btn_lastweek: '<   지난주',
             btn_nextweek: '다음주   >',
-            week1: '',
-            week2: '',
+            today: '',
+            startDate: '',
+            endDate: '',
+            lastWeekToday: '',
+            lastWeekBool: true,
             basic_mon_lunch: '',
             basic_tue_lunch: '',
             basic_wed_lunch: '',
@@ -93,6 +90,7 @@ export default {
             basic_thu_dinner: '',
             basic_fri_dinner: '',
             basic_sat_dinner: '',
+            temporary_today: '',
         }
     },
 
@@ -112,86 +110,76 @@ export default {
             }
         },
 
-        //지난주
-        lastweek(){
-            var dateOffset1 = (24*60*60*1000) * 6
-            var dateOffset2 = (24*60*60*1000) * 7
+        //시작 날짜
+        setStartDate(day){
+            var month_compare = day.getDay() || 7
+            this.lastWeekToday = day
+            if( month_compare !== 1){
+                day.setHours(-24 * (month_compare-1))}
 
-            today.setTime(today.getTime() - dateOffset2)
-                       
-            var mon_compare = today.getDay() || 7;
-            if( mon_compare !== 1){
-                today.setHours(-24 * (mon_compare-1));
+
+            var date = day.getDate()
+            var month = day.getMonth()+1
+            var year = day.getFullYear()
+
+            this.temporary_today = year + '/' + month + '/' + date
+
+            if(date<10) {
+                date='0'+date
+            }
+            if(month<10) {
+                month='0'+month
             }
 
-            var dd1 = today.getDate()
-            var mm1 = today.getMonth()+1
-            var yyyy1 = today.getFullYear()
+            this.startDate = year+'.'+month+'.'+date
 
-            //yyyy.mm.dd
-            if(dd1<10) {
-                dd1='0'+dd1
-            }
-            if(mm1<10) {
-                mm1='0'+mm1
-            }
-
-            this.week1 = yyyy1+'.'+mm1+'.'+dd1
-            
-
-            after.setTime(today.getTime() + dateOffset1)
-            var dd2 = after.getDate();
-            var mm2 = after.getMonth() +1
-            var yyyy2 = after.getFullYear()
-
-            if(dd2<10) {
-                dd2='0'+dd2
-            }
-            if(mm2<10) {
-                mm2='0'+mm2
-            }
-
-            this.week2 = yyyy2+'.'+mm2+'.'+dd2
         },
-        nextweek(){
-            var dateOffset1 = (24*60*60*1000) * 6
-            var dateOffset2 = (24*60*60*1000) * 7
 
-            today.setTime(today.getTime() + dateOffset2)
-                       
-            var mon_compare = today.getDay() || 7;
-            if( mon_compare !== 1){
-                today.setHours(-24 * (mon_compare-1));
+        //마지막 날짜
+        setEndDate(day){
+            var dateOffset = (24*60*60*1000) * 6
+
+            day.setTime(day.getTime() + dateOffset)
+            var date = day.getDate();
+            var month = day.getMonth() +1
+            var year = day.getFullYear()
+
+            if(date<10) {
+               date='0'+date
             }
 
-            var dd1 = today.getDate()
-            var mm1 = today.getMonth()+1
-            var yyyy1 = today.getFullYear()
-
-            //yyyy.mm.dd
-            if(dd1<10) {
-                dd1='0'+dd1
-            }
-            if(mm1<10) {
-                mm1='0'+mm1
+            if(month<10) {
+                month='0'+month
             }
 
-            this.week1 = yyyy1+'.'+mm1+'.'+dd1
+            this.endDate = year+'.'+month+'.'+date
             
+        },
 
-            after.setTime(today.getTime() + dateOffset1)
-            var dd2 = after.getDate();
-            var mm2 = after.getMonth() +1
-            var yyyy2 = after.getFullYear()
+        //지난주 버튼 이벤트
+        lastWeekEvent(){
+            var day = new Date(this.temporary_today)
+            var current_day = new Date(day.getTime() - (7 * 24 * 60 * 60 * 1000))
+            var date = current_day.getDate()
+            var month = current_day.getMonth() + 1
+            var year = current_day.getFullYear()
 
-            if(dd2<10) {
-                dd2='0'+dd2
-            }
-            if(mm2<10) {
-                mm2='0'+mm2
-            }
+            var standard_day = new Date(year + '/' + month + '/' + date)
+            this.setStartDate(standard_day)
+            this.setEndDate(standard_day)
+        },
 
-            this.week2 = yyyy2+'.'+mm2+'.'+dd2
+        //다음주 버튼 이벤트
+        nextWeekEvent(){
+            var day = new Date(this.temporary_today)
+            var current_day = new Date(day.getTime() + (7 * 24 * 60 * 60 * 1000))
+            var date = current_day.getDate()
+            var month = current_day.getMonth() + 1
+            var year = current_day.getFullYear()
+
+            var standard_day = new Date(year + '/' + month + '/' + date)
+            this.setStartDate(standard_day)
+            this.setEndDate(standard_day)
         }
     },
 
