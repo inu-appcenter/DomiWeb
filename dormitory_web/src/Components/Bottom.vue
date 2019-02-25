@@ -58,6 +58,7 @@
 
 <script>
 import Vue from 'vue'
+import axios from 'axios'
 
 export default {
     name: 'Bottom',
@@ -66,6 +67,7 @@ export default {
         this.today = new Date()
         this.setStartDate(this.today)
         this.setEndDate(this.today)
+        this.getOneDayMenu()
     },
 
     data: function() {
@@ -91,10 +93,25 @@ export default {
             basic_fri_dinner: '',
             basic_sat_dinner: '',
             temporary_today: '',
+            for_menu_date: '',
         }
     },
 
     methods: {
+        getOneDayMenu(){
+            var self = this
+
+            axios.get('http://117.16.191.242:5630/read/date',
+            {date: this.for_menu_date})
+            .then(function(response) {
+                alert(response.data[0].TITLE)
+                console.log(response)
+                })
+                .catch(function(error) {
+                    console.log(error)
+                    })
+        },
+
         imgsave() {
             if(this.token == this.how){
                 alert("로그인 해주세요")
@@ -132,6 +149,7 @@ export default {
             }
 
             this.startDate = year+'.'+month+'.'+date
+            this.for_menu_date = this.startDate.replace(/[.]/g,'')
 
         },
 
@@ -167,6 +185,9 @@ export default {
             var standard_day = new Date(year + '/' + month + '/' + date)
             this.setStartDate(standard_day)
             this.setEndDate(standard_day)
+            this.for_menu_date = this.startDate.replace(/[.]/g,'')
+
+            this.getOneDayMenu()
         },
 
         //다음주 버튼 이벤트
@@ -180,13 +201,16 @@ export default {
             var standard_day = new Date(year + '/' + month + '/' + date)
             this.setStartDate(standard_day)
             this.setEndDate(standard_day)
+            this.for_menu_date = this.startDate.replace(/[.]/g,'')
+
+            this.getOneDayMenu()
         }
     },
 
     computed: {
         token: function() {
             return this.$store.state.token
-        }
+        },
     }
 }
 </script>

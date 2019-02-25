@@ -12,33 +12,20 @@ import axios from 'axios'
 
 export default {
     name: 'Sum',
-
+/*
     created: function(){
         this.putWeekendMenu()
-        this.getOneDayMenu()
         this.getTodayMenu()
         this.getThisWeekendMenu()
     },
-
+*/
     components: {
         Top,
         Bottom
     },
-
+/*
     methods: {
-        getOneDayMenu(){
-            var self = this
-
-            axios.get('http://117.16.191.242:5630/read/date',
-            {date: 20190207})
-            .then(function(response) {
-
-                console.log(response)
-                })
-                .catch(function(error) {
-                    console.log(error)
-                    })
-        },
+        
 
         getTodayMenu(){
             var self = this
@@ -109,6 +96,6 @@ export default {
                     console.log(error)
                     })
         }
-    }
+    }*/
 }
 </script>
