@@ -16,8 +16,11 @@ export default {
   },
 
   components: {
-    Sum
+    Sum,
   }
 }
 </script>
 
+<style lang="scss">
+
+</style>

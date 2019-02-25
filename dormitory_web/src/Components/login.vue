@@ -31,7 +31,7 @@ export default {
             sub_explain: '로그인을 위해 패스워드를 입력해주세요!', //부가 설명 부분
             input: '', //패스워드 입력 부분
             password: 'appcen', //패스워드 상수
-            token: 'token', //아직 사용하지 않음
+            // token: 'token', //아직 사용하지 않음
             login: true //로그인이 필요한 경우 true 반환(로그인을 안했거나, 로그아웃 했을 때)
         }
     },
@@ -43,6 +43,8 @@ export default {
             this.btn_text = this.btn_logout //버튼 텍스트 체인지
             alert("로그인 성공")
             this.sub_explain = "어서오세요! 인천대학교 학식 관리 페이지 입니다."
+
+            this.$store.commit('setToken','login') // 현재 로그인 상태 변환
         },
         logoutStatus(){ //로그아웃 상태
             this.login = true //로그인 필요가 있음
@@ -57,6 +59,7 @@ export default {
                 break
 
             }
+            this.$store.commit('setToken','logout') // 현재 로그인 상태 변환
         },
         loginValidate(){ //로그인 
             var self = this

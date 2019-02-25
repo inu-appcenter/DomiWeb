@@ -9,7 +9,6 @@
 .INU-Appcenter {
     width: 330px;
     height: 70px;
-    font-family: SFProDisplay;
     font-size: 38px;
     font-weight: bold;
     font-style: normal;
@@ -25,7 +24,6 @@
 .info {
     width: 565px;
     height: 84px;
-    font-family: NotoSansCJKkr;
     font-size: 17px;
     font-weight: normal;
     font-style: normal;
@@ -48,7 +46,6 @@
     width: 292px;
     height: 34px;
     background-color: #ffffff;
-    font-family: SFProDisplay;
     font-size: 18px;
     font-weight: normal;
     font-style: normal;
@@ -64,8 +61,8 @@
 .btn-primary {
     width: 126px;
     height: 34px;
-    font-family: SFProDisplay;
     font-size: 18px;
+    background-color: #ffffff;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
@@ -74,7 +71,7 @@
     text-align: center;
     color: #000000;
     border-radius: 30px;
-    margin-top: 18px;
+    margin-top: 16px;
 }
 
 #Bottom {
@@ -89,7 +86,6 @@
 .menutitle {
     width: 375px;
     height: 33px;
-    font-family: NotoSansCJKkr;
     font-size: 22px;
     font-weight: 500;
     font-style: normal;
@@ -103,13 +99,12 @@
 
 #calender {
     margin-top: 11px;
-    text-align: center;  
+    text-align: center;
 }
 
 .btn-last, .btn-next {
     width: 72px;
     height: 19px;
-    font-family: NotoSansCJKkr;
     font-size: 13px;
     font-weight: normal;
     font-style: normal;
@@ -125,7 +120,6 @@
 .week {
     width: 375px;
     height: 24px;
-    font-family: SFProDisplay;
     font-size: 20px;
     font-weight: 500;
     font-style: normal;
@@ -140,11 +134,10 @@
 
 .memotitle {
     margin: 0 auto;
-    margin-top: 39px;
+    margin-top: 25px;
     margin-bottom: 16px;
     width: 375px;
     height: 33px;
-    font-family: NotoSansCJKkr;
     font-size: 22px;
     font-weight: 500;
     font-style: normal;
@@ -179,9 +172,55 @@
 
 #emailHelp {
     margin-top: 1px;
-    font-family: NotoSansCJKkr;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
     color: #ffffff
+}
+
+section {
+    margin-top: 51px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+section > nav {
+    margin: 0 7.8px 0 7.8px;
+}
+
+
+nav h4{
+    margin: 0px 0px 13px 0px;
+    width: auto;
+    height: 19px;
+    font-family: SFProDisplay;
+    font-size: 16px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #000000;
+}
+
+nav textarea {
+    width: 123px;
+    height: 193px;
+    background-color: #ededed;
+    padding: 19px 6px 20px 5px;
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.57;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 14px;
+    border-radius: 10px;
 }

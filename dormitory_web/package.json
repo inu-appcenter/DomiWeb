@@ -12,19 +12,24 @@
   "dependencies": {
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
-    "dotenv-webpack": "^1.6.0",
+    "dotenv-webpack": "^1.7.0",
     "es6-promise": "^4.2.5",
     "event-source-polyfill": "^1.0.5",
+    "html2canvas": "^1.0.0-alpha.12",
+    "jquery": "^3.3.1",
+    "jspdf": "^1.5.3",
     "node-sass": "^4.11.0",
+    "pdfmake": "^0.1.50",
     "promise-polyfill": "^8.1.0",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
-    "vue": "^2.5.11",
+    "vue": "^2.6.3",
+    "vue-html2canvas": "0.0.4",
     "vue-meta": "^1.5.8",
     "vue-router": "^3.0.2",
     "vue-style-loader": "^4.1.2",
-    "vuex": "^3.0.1"
+    "vuex": "^3.1.0"
   },
   "browserslist": [
     "> 1%",
@@ -40,7 +45,7 @@
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
     "vue-loader": "^13.0.5",
-    "vue-template-compiler": "^2.4.4",
+    "vue-template-compiler": "^2.6.3",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
   }
