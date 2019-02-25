@@ -67,7 +67,7 @@ export default {
         this.today = new Date()
         this.setStartDate(this.today)
         this.setEndDate(this.today)
-        this.getOneDayMenu()
+        this.getThisWeekendMenu()
     },
 
     data: function() {
@@ -94,88 +94,83 @@ export default {
             basic_sat_dinner: '',
             temporary_today: '',
             for_menu_date: '',
+
+            for_mon: '',
+            for_tue: '',
+            for_wed: '',
+            for_thu: '',
+            for_fri: '',
+            for_sat: ''
         }
     },
 
     methods: {
-        getOneDayMenu(){
+        putWeekendMenu(){
             var self = this
-            var setlunch
-            var setdinner
 
-            for(var six = 0 ; six <= 5 ; six ++ ){
+            axios.post('http://117.16.191.242:5630/create',
+            {day: {
+                monday: self.for_mon,
+                tueday: self.for_tue,
+                wenday: self.for_wed,
+                thuday: self.for_thu,
+                friday: self.for_fri,
+                satday: self.for_sat
+            },
+             monday: {
+                LunchMenu: self.basic_mon_lunch.replace(/(?:\r\n|\r|\n)/g, '<br/>'),
+		        DinnerMenu: self.basic_mon_dinner.replace(/(?:\r\n|\r|\n)/g, '<br/>')
+             },
+             tueday: {
+                LunchMenu: self.basic_tue_lunch.replace(/(?:\r\n|\r|\n)/g, '<br/>'),
+		        DinnerMenu: self.basic_tue_dinner.replace(/(?:\r\n|\r|\n)/g, '<br/>')
+             },
+             wenday: {
+                LunchMenu: self.basic_wed_lunch.replace(/(?:\r\n|\r|\n)/g, '<br/>'),
+		        DinnerMenu: self.basic_wed_dinner.replace(/(?:\r\n|\r|\n)/g, '<br/>')
+             },
+             thuday: {
+                LunchMenu: self.basic_thu_lunch.replace(/(?:\r\n|\r|\n)/g, '<br/>'),
+		        DinnerMenu: self.basic_thu_dinner.replace(/(?:\r\n|\r|\n)/g, '<br/>')
+             },
+             friday: {
+                LunchMenu: self.basic_fri_lunch.replace(/(?:\r\n|\r|\n)/g, '<br/>'),
+		        DinnerMenu: self.basic_fri_dinner.replace(/(?:\r\n|\r|\n)/g, '<br/>')
+             },
+             satday: {
+                LunchMenu: self.basic_sat_lunch.replace(/(?:\r\n|\r|\n)/g, '<br/>'),
+		        DinnerMenu: self.basic_sat_dinner.replace(/(?:\r\n|\r|\n)/g, '<br/>')
+             }})
+            .then(function(response) {
+                console.log(response)
+                })
+                .catch(function(error) {
+                    console.log(error)
+                    })
+        },
 
-                self.plusOneday()                
-                
-                switch(six){
-                    case 0:{
-                        axios.get('http://117.16.191.242:5630/read/date',{date: this.for_menu_date})
-                        .then(function(response) {
-                            self.basic_mon_lunch = response.data[0].TITLE
-                            self.basic_mon_dinner = response.data[1].TITLE                                        
-                        console.log(response)
-                        })
-                        .catch(function(error) {
-                            console.log(error)
-                            })
-                    }
-                    case 1:{
-                        axios.get('http://117.16.191.242:5630/read/date',{date: this.for_menu_date})
-                        .then(function(response) {
-                            self.basic_tue_lunch = response.data[0].TITLE
-                            self.basic_tue_dinner = response.data[1].TITLE                                        
-                        console.log(response)
-                        })
-                        .catch(function(error) {
-                            console.log(error)
-                            })
-                    }
-                    case 2:{
-                        axios.get('http://117.16.191.242:5630/read/date',{date: this.for_menu_date})
-                        .then(function(response) {
-                            self.basic_wed_lunch = response.data[0].TITLE
-                            self.basic_wed_dinner = response.data[1].TITLE                                        
-                        console.log(response)
-                        })
-                        .catch(function(error) {
-                            console.log(error)
-                            })
-                    }
-                    case 3:{
-                        axios.get('http://117.16.191.242:5630/read/date',{date: this.for_menu_date})
-                        .then(function(response) {
-                            self.basic_thu_lunch = response.data[0].TITLE
-                            self.basic_thu_dinner = response.data[1].TITLE                                        
-                        console.log(response)
-                        })
-                        .catch(function(error) {
-                            console.log(error)
-                            })
-                    }
-                    case 4:{
-                        axios.get('http://117.16.191.242:5630/read/date',{date: this.for_menu_date})
-                        .then(function(response) {
-                            self.basic_fri_lunch = response.data[0].TITLE
-                            self.basic_fri_dinner = response.data[1].TITLE                                        
-                        console.log(response)
-                        })
-                        .catch(function(error) {
-                            console.log(error)
-                            })
-                    }
-                    case 5:{
-                        axios.get('http://117.16.191.242:5630/read/date',{date: this.for_menu_date})
-                        .then(function(response) {
-                            self.basic_sat_lunch = response.data[0].TITLE
-                            self.basic_sat_dinner = response.data[1].TITLE                                        
-                        console.log(response)
-                        })
-                        .catch(function(error) {
-                            console.log(error)
-                            })
-                    } 
-                }                   
-            }
+        getThisWeekendMenu(){
+            var self = this
+            axios.post('http://117.16.191.242:5630/read/all',
+            {date: [self.for_mon, self.for_tue, self.for_wed, self.for_thu, self.for_fri, self.for_sat]})
+            .then(function(response) {
+                self.basic_mon_lunch = response.data[0].LunchMenu.replace('<br/>','\r\n')
+                self.basic_mon_dinner = response.data[0].DinnerMenu.replace('<br/>','\r\n')
+                self.basic_tue_lunch = response.data[1].LunchMenu.replace('<br/>','\r\n')
+                self.basic_tue_dinner = response.data[1].DinnerMenu.replace('<br/>','\r\n')
+                self.basic_wed_lunch = response.data[2].LunchMenu.replace('<br/>','\r\n')
+                self.basic_wed_dinner = response.data[2].DinnerMenu.replace('<br/>','\r\n')
+                self.basic_thu_lunch = response.data[3].LunchMenu.replace('<br/>','\r\n')
+                self.basic_thu_dinner = response.data[3].DinnerMenu.replace('<br/>','\r\n')
+                self.basic_fri_lunch = response.data[4].LunchMenu.replace('<br/>','\r\n')
+                self.basic_fri_dinner = response.data[4].DinnerMenu.replace('<br/>','\r\n')
+                self.basic_sat_lunch = response.data[5].LunchMenu.replace('<br/>','\r\n')
+                self.basic_sat_dinner = response.data[5].DinnerMenu.replace('<br/>','\r\n')
+                console.log(response)
+                })
+                .catch(function(error) {
+                    console.log(error)
+                    })
         },
 
         imgsave() {
@@ -188,8 +183,12 @@ export default {
         },
 
         svsave() {
+            var self = this
             if(this.token == this.how){
                 alert("로그인 해주세요")
+            }
+            else{
+                self.putWeekendMenu()
             }
         },
 
@@ -216,6 +215,34 @@ export default {
 
             this.startDate = year+'.'+month+'.'+date
             this.for_menu_date = this.startDate.replace(/[.]/g,'')
+
+            var self = this
+
+            for(var six=0 ; six <=5 ; six ++){
+                switch(six){
+                    case 0:{
+                        self.for_mon = self.for_menu_date                        
+                    }
+                    case 1:{
+                        self.for_tue = self.for_menu_date
+                    }
+                    case 2:{
+                        self.for_wed = self.for_menu_date
+                    }
+                    case 3:{
+                        self.for_thu = self.for_menu_date
+                    }
+                    case 4:{
+                        self.for_fri = self.for_menu_date
+                    }
+                    case 5:{
+                        self.for_sat = self.for_menu_date    
+                    }
+                }
+                self.plusOneday()
+            }
+
+            self.backDay()
 
         },
 
@@ -251,9 +278,9 @@ export default {
             var standard_day = new Date(year + '/' + month + '/' + date)
             this.setStartDate(standard_day)
             this.setEndDate(standard_day)
-            this.for_menu_date = this.startDate.replace(/[.]/g,'')
+            
 
-            this.getOneDayMenu()
+            this.getThisWeekendMenu()
         },
 
         //다음주 버튼 이벤트
@@ -267,21 +294,54 @@ export default {
             var standard_day = new Date(year + '/' + month + '/' + date)
             this.setStartDate(standard_day)
             this.setEndDate(standard_day)
-            this.for_menu_date = this.startDate.replace(/[.]/g,'')
+            
 
-            this.getOneDayMenu()
+            this.getThisWeekendMenu()
         },
 
         plusOneday(){
             var day = new Date(this.temporary_today)
             var current_day = new Date(day.getTime() + (1 * 24 * 60 * 60 * 1000))
+                      
             var date = current_day.getDate()
             var month = current_day.getMonth() + 1
             var year = current_day.getFullYear()
 
+            this.temporary_today = year + '/' + month + '/' + date  
+
+            if(date<10) {
+               date='0'+date
+            }
+
+            if(month<10) {
+                month='0'+month
+            }
+
             var standard_day = new Date(year + '/' + month + '/' + date)
-            this.setStartDate(standard_day)
-            this.setEndDate(standard_day)
+
+            this.startDate = year+'.'+month+'.'+date
+            this.for_menu_date = this.startDate.replace(/[.]/g,'')
+        },
+
+        backDay(){
+            var day = new Date(this.temporary_today)
+            var current_day = new Date(day.getTime() - (6 * 24 * 60 * 60 * 1000))
+            var date = current_day.getDate()
+            var month = current_day.getMonth() + 1
+            var year = current_day.getFullYear()
+
+            this.temporary_today = year + '/' + month + '/' + date
+
+            if(date<10) {
+               date='0'+date
+            }
+
+            if(month<10) {
+                month='0'+month
+            }
+
+            var standard_day = new Date(year + '/' + month + '/' + date)
+            this.startDate = year+'.'+month+'.'+date
             this.for_menu_date = this.startDate.replace(/[.]/g,'')
         }
     },
