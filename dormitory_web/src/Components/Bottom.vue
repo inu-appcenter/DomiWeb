@@ -1,7 +1,7 @@
 <template>
 
     <div id="Bottom">
-
+        
         <h3 class="menutitle">식단 입력</h3>
         
         <!-- 식단 캘린더 -->
@@ -48,8 +48,8 @@
         <textarea class="addinfo"></textarea>
 
         <div class="save">
-            <button class="imgsave">이미지로 저장하기</button>
-            <button class="svsave">서버에 저장하기</button>
+            <button @click="imgsave()" class="imgsave">이미지로 저장하기</button>
+            <button @click="svsave()" class="svsave">서버에 저장하기</button>
         </div>
 
     </div>
