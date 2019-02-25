@@ -29,7 +29,6 @@ export default {
             axios.get('http://117.16.191.242:5630/read/date')
             .then(function(response) {
                 console.log(response)
-                console.log('성공')
                 })
                 .catch(function(error) {
                     console.log(error)
