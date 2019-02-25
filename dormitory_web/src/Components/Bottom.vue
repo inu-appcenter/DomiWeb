@@ -102,10 +102,9 @@ export default {
             var self = this
 
             axios.get('http://117.16.191.242:5630/read/date',
-            {date: this.for_menu_date})
+            {date: self.for_menu_date})
             .then(function(response) {
-                alert(response.data[0].TITLE)
-                console.log(response)
+                self.basic_mon_lunch = response.data[0].TITLE + '\n' + response.data[0].MENU + '\n' + response.data[0].order
                 })
                 .catch(function(error) {
                     console.log(error)
