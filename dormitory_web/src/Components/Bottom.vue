@@ -1,8 +1,8 @@
 <template>
 
-    <div id="Bottom">
+    <div id="Bottom" ref="capture">
         
-        <h3 class="menutitle">식단 입력</h3>
+        <h3 class="menutitle" data-html2canvas-ignore="true">식단 입력</h3>
         
         <!-- 식단 캘린더 -->
         <div id="calender">
@@ -44,14 +44,13 @@
 
         </div>
 
-        <h3 class="memotitle">메모 작성</h3>
+        <h3 class="memotitle" data-html2canvas-ignore="true">메모 작성</h3><br/>
         <textarea class="addinfo"></textarea>
 
         <div class="save">
-            <button @click="imgsave()" class="imgsave">이미지로 저장하기</button>
-            <button @click="svsave()" class="svsave">서버에 저장하기</button>
+            <button @click="imgsave()" class="imgsave" data-html2canvas-ignore="true">이미지로 저장하기</button>
+            <button @click="svsave()" class="svsave" data-html2canvas-ignore="true">서버에 저장하기</button>
         </div>
-
     </div>
 
 </template>
@@ -59,6 +58,9 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
+import html2canvas from 'html2canvas'
+import {saveAs} from 'file-saver'
+
 
 export default {
     name: 'Bottom',
@@ -100,7 +102,7 @@ export default {
             for_wed: '',
             for_thu: '',
             for_fri: '',
-            for_sat: ''
+            for_sat: '',
         }
     },
 
@@ -147,6 +149,7 @@ export default {
                 .catch(function(error) {
                     console.log(error)
                     })
+            alert("저장이 완료되었습니다.")
         },
 
         getThisWeekendMenu(){
@@ -173,12 +176,19 @@ export default {
                     })
         },
 
-        imgsave() {
+        imgsave(){
+            var self = this
             if(this.token == this.how){
                 alert("로그인 해주세요")
             }
             else {
-                
+                html2canvas(document.querySelector("#Bottom")).then(function(canvas){
+                    var img = canvas.toDataURL("image/ipg")
+                    
+                    var FileSaver = require('file-saver')
+                    FileSaver.saveAs(img, self.startDate + '.jpg')
+                })
+                            
             }
         },
 
