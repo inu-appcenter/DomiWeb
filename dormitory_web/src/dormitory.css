@@ -152,6 +152,7 @@
 .addinfo {
     width: 693px;
     height: 250px;
+    border-radius: 15px;
 }
 
 .save {
