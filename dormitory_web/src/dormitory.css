@@ -3,8 +3,8 @@
     height: 22.33%;
     padding-top: 101px;
     padding-bottom: 80px;
-    background-image: url('./assets/Web_background_Image.jpg');
-    background-size: contain 
+    background: url(./assets/Web_background_Image.jpg);
+    background-size: contain;
 }
 
 .INU-Appcenter {
@@ -56,7 +56,9 @@
     text-align: center;
     color: #000000;
     left: 50%;
-    border-radius: 30px;
+    border-radius: 20.5px;
+    border-color: #ffffff;
+    border: none;
 }
 
 .btn-primary {
@@ -71,7 +73,7 @@
     letter-spacing: 0.1px;
     text-align: center;
     color: #000000;
-    border-radius: 30px;
+    border-radius: 20.5px;
     margin-top: 16px;
 }
 
@@ -88,7 +90,7 @@
     width: 375px;
     height: 33px;
     font-size: 22px;
-    font-weight: 500;
+    font-weight: 700;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -122,15 +124,15 @@
     width: 375px;
     height: 24px;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 700;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
     letter-spacing: 0px;
     text-align: center;
     color: #000000;
-    margin-left: 1px;
-    margin-right: 1px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .memotitle {
@@ -140,7 +142,7 @@
     width: 375px;
     height: 33px;
     font-size: 22px;
-    font-weight: 500;
+    font-weight: 700;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -152,7 +154,17 @@
 .addinfo {
     width: 693px;
     height: 250px;
-    border-radius: 15px;
+    border-radius: 6px;
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.57;
+    letter-spacing: 0px;
+    color: #000000;
+    padding: 24px 137px 51px 24px;
+    
 }
 
 .save {
@@ -166,6 +178,16 @@
     outline: 0;
     border: 0;
     margin-top: 47px;
+    font-family: NotoSansCJKkr;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.1px;
+    text-align: center;
+    color: #171717;
+    border-radius: 20.5px;
 }
 
 .svsave {
@@ -210,8 +232,8 @@ nav h4{
 }
 
 nav textarea {
-    width: 123px;
-    height: 193px;
+    width: 116px;
+    height: 194px;
     background-color: #ededed;
     padding: 19px 6px 20px 5px;
     font-family: NotoSansCJKkr;
@@ -224,5 +246,5 @@ nav textarea {
     text-align: center;
     color: #000000;
     margin-bottom: 14px;
-    border-radius: 10px;
+    border-radius: 9px;
 }

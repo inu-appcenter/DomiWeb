@@ -15,6 +15,7 @@
     "dotenv-webpack": "^1.7.0",
     "es6-promise": "^4.2.5",
     "event-source-polyfill": "^1.0.5",
+    "file-saver": "^2.0.1",
     "html2canvas": "^1.0.0-alpha.12",
     "jquery": "^3.3.1",
     "jspdf": "^1.5.3",
