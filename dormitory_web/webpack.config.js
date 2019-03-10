@@ -7,9 +7,10 @@ module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    publicPath: './dist/',
     filename: 'build.js'
   },
+
   // plugins: [
   //   new Dotenv()
   // ],
@@ -91,10 +92,11 @@ module.exports = {
     extensions: ['*', '.js', '.vue', '.json']
   },
   devServer: {
-    historyApiFallback: true,
-    noInfo: true,
-    overlay: true
-  },
+	historyApiFallback: true,
+	noInfo: true,
+	overlay: true,
+	port: 5630
+},
   performance: {
     hints: false
   },
