@@ -265,7 +265,7 @@ export default {
                         self.for_sat = self.for_menu_date    
                     }
                     case 6:{
-                        self.for_sun = self.for_menu_date    
+                        self.for_sun = self.for_menu_date       
                     }
                 }
                 self.plusOneday()
@@ -354,7 +354,7 @@ export default {
 
         backDay(){
             var day = new Date(this.temporary_today)
-            var current_day = new Date(day.getTime() - (6 * 24 * 60 * 60 * 1000))
+            var current_day = new Date(day.getTime() - (7 * 24 * 60 * 60 * 1000))
             var date = current_day.getDate()
             var month = current_day.getMonth() + 1
             var year = current_day.getFullYear()
