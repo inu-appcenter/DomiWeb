@@ -40,6 +40,11 @@
                     <textarea v-model="basic_sat_lunch"></textarea><br>
                     <textarea v-model="basic_sat_dinner"></textarea>
                 </nav>
+                <nav>
+                    <h4>Sun</h4>
+                    <textarea v-model="basic_sun_lunch"></textarea><br>
+                    <textarea v-model="basic_sun_dinner"></textarea>
+                </nav>
             </section>
 
         </div>
@@ -75,8 +80,8 @@ export default {
     data: function() {
         return{
             how: 'logout',
-            btn_lastweek: '<   지난주',
-            btn_nextweek: '다음주   >',
+            btn_lastweek: '< 지난주',
+            btn_nextweek: '다음주 >',
             today: '',
             startDate: '',
             endDate: '',
@@ -88,12 +93,14 @@ export default {
             basic_thu_lunch: '',
             basic_fri_lunch: '',
             basic_sat_lunch: '',
+            basic_sun_lunch: '',
             basic_mon_dinner: '',
             basic_tue_dinner: '',
             basic_wed_dinner: '',
             basic_thu_dinner: '',
             basic_fri_dinner: '',
             basic_sat_dinner: '',
+            basic_sun_dinner: '',
             temporary_today: '',
             for_menu_date: '',
 
@@ -103,6 +110,7 @@ export default {
             for_thu: '',
             for_fri: '',
             for_sat: '',
+            for_sun: '',
         }
     },
 
@@ -117,7 +125,8 @@ export default {
                 wenday: self.for_wed,
                 thuday: self.for_thu,
                 friday: self.for_fri,
-                satday: self.for_sat
+                satday: self.for_sat,
+                sunday: self.for_sun
             },
              monday: {
                 LunchMenu: self.basic_mon_lunch.replace(/(?:\r\n|\r|\n)/g, '<br/>'),
@@ -142,7 +151,12 @@ export default {
              satday: {
                 LunchMenu: self.basic_sat_lunch.replace(/(?:\r\n|\r|\n)/g, '<br/>'),
 		        DinnerMenu: self.basic_sat_dinner.replace(/(?:\r\n|\r|\n)/g, '<br/>')
-             }})
+             },
+             sunday: {
+                LunchMenu: self.basic_sun_lunch.replace(/(?:\r\n|\r|\n)/g, '<br/>'),
+		        DinnerMenu: self.basic_sun_dinner.replace(/(?:\r\n|\r|\n)/g, '<br/>')
+             }
+             })
             .then(function(response) {
                 console.log(response)
                 })
@@ -155,20 +169,22 @@ export default {
         getThisWeekendMenu(){
             var self = this
             axios.post('http://117.16.191.242:5630/read/all',
-            {date: [self.for_mon, self.for_tue, self.for_wed, self.for_thu, self.for_fri, self.for_sat]})
+            {date: [self.for_mon, self.for_tue, self.for_wed, self.for_thu, self.for_fri, self.for_sat, self.for_sun]})
             .then(function(response) {
-                self.basic_mon_lunch = response.data[0].LunchMenu.replace('<br/>','\r\n')
-                self.basic_mon_dinner = response.data[0].DinnerMenu.replace('<br/>','\r\n')
-                self.basic_tue_lunch = response.data[1].LunchMenu.replace('<br/>','\r\n')
-                self.basic_tue_dinner = response.data[1].DinnerMenu.replace('<br/>','\r\n')
-                self.basic_wed_lunch = response.data[2].LunchMenu.replace('<br/>','\r\n')
-                self.basic_wed_dinner = response.data[2].DinnerMenu.replace('<br/>','\r\n')
-                self.basic_thu_lunch = response.data[3].LunchMenu.replace('<br/>','\r\n')
-                self.basic_thu_dinner = response.data[3].DinnerMenu.replace('<br/>','\r\n')
-                self.basic_fri_lunch = response.data[4].LunchMenu.replace('<br/>','\r\n')
-                self.basic_fri_dinner = response.data[4].DinnerMenu.replace('<br/>','\r\n')
-                self.basic_sat_lunch = response.data[5].LunchMenu.replace('<br/>','\r\n')
-                self.basic_sat_dinner = response.data[5].DinnerMenu.replace('<br/>','\r\n')
+                self.basic_mon_lunch = response.data[0].LunchMenu.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, '\r\n')
+                self.basic_mon_dinner = response.data[0].DinnerMenu.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, '\r\n')
+                self.basic_tue_lunch = response.data[1].LunchMenu.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, '\r\n')
+                self.basic_tue_dinner = response.data[1].DinnerMenu.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, '\r\n')
+                self.basic_wed_lunch = response.data[2].LunchMenu.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, '\r\n')
+                self.basic_wed_dinner = response.data[2].DinnerMenu.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, '\r\n')
+                self.basic_thu_lunch = response.data[3].LunchMenu.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, '\r\n')
+                self.basic_thu_dinner = response.data[3].DinnerMenu.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, '\r\n')
+                self.basic_fri_lunch = response.data[4].LunchMenu.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, '\r\n')
+                self.basic_fri_dinner = response.data[4].DinnerMenu.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, '\r\n')
+                self.basic_sat_lunch = response.data[5].LunchMenu.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, '\r\n')
+                self.basic_sat_dinner = response.data[5].DinnerMenu.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, '\r\n')
+                self.basic_sun_lunch = response.data[6].LunchMenu.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, '\r\n')
+                self.basic_sun_dinner = response.data[6].DinnerMenu.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, '\r\n')
                 console.log(response)
                 })
                 .catch(function(error) {
@@ -228,7 +244,7 @@ export default {
 
             var self = this
 
-            for(var six=0 ; six <=5 ; six ++){
+            for(var six=0 ; six <=6 ; six ++){
                 switch(six){
                     case 0:{
                         self.for_mon = self.for_menu_date                        
@@ -247,6 +263,9 @@ export default {
                     }
                     case 5:{
                         self.for_sat = self.for_menu_date    
+                    }
+                    case 6:{
+                        self.for_sun = self.for_menu_date    
                     }
                 }
                 self.plusOneday()
