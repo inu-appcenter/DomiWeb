@@ -3,8 +3,8 @@
     height: 22.33%;
     padding-top: 101px;
     padding-bottom: 80px;
-    background: url(./assets/Web_background_Image.jpg);
-    background-size: contain;
+    background: url(./assets/Web_background_Image_dark.jpg);
+    background-size: 100% 100%;
 }
 
 .INU-Appcenter {
