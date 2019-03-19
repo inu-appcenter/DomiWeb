@@ -235,6 +235,27 @@ nav textarea {
     width: 116px;
     height: 194px;
     background-color: #ededed;
+    border-color: #ededed;
+    padding: 19px 6px 20px 5px;
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.57;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 14px;
+    border-radius: 9px;
+}
+
+nav textarea:focus {
+    width: 116px;
+    height: 194px;
+    background-color: #ffffff;
+    border-color: #ededed;
+    outline: none;
     padding: 19px 6px 20px 5px;
     font-family: NotoSansCJKkr;
     font-size: 14px;
