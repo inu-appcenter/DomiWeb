@@ -7,12 +7,14 @@ echo "=============================="
 
 git pull
 
-# install packages && run on local server
+# install packages
 cd dormitory_web
 npm install
 
-# build
+# prebuild
 npm run build
+
+# run on local server
 npm run dev
 
 # root dir
