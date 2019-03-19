@@ -164,7 +164,7 @@
     letter-spacing: 0px;
     color: #000000;
     padding: 24px 137px 51px 24px;
-    
+
 }
 
 .save {
@@ -268,4 +268,23 @@ nav textarea:focus {
     color: #000000;
     margin-bottom: 14px;
     border-radius: 9px;
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #8e8e8e;
+  border-radius: 4px;
+  border: 2px solid #fff;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
 }
