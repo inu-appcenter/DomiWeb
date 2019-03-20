@@ -1,8 +1,6 @@
 #!/bin/bash
-prjname="DomiWeb"
-
 echo "=============================="
-echo ${prjname}
+echo "${PWD##*/}"
 echo "=============================="
 
 git pull
