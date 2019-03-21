@@ -5,14 +5,15 @@ echo "=============================="
 
 git pull
 
-# install packages
 cd dormitory_web
+
+# install dependencies
 npm install
 
-# prebuild
+# build for production with minification
 npm run build
 
-# run on local server
+# serve with hot reload at localhost:5630
 npm run dev
 
 # root dir
