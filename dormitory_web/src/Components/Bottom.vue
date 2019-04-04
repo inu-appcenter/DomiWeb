@@ -6,9 +6,9 @@
         
         <!-- 식단 캘린더 -->
         <div id="calender">
-            <button @click="lastWeekEvent()" class="btn-last" data-html2canvas-ignore="true">{{btn_lastweek}}</button>
+            <button @click="WeekBtn_Event(-7)" class="btn-last" data-html2canvas-ignore="true">{{btn_lastweek}}</button>
             <span class="week">{{startDate}}_{{endDate}}</span>
-            <button @click="nextWeekEvent()" class="btn-next" data-html2canvas-ignore="true">{{btn_nextweek}}</button><br>
+            <button @click="WeekBtn_Event(7)" class="btn-next" data-html2canvas-ignore="true">{{btn_nextweek}}</button><br>
             <section class="menu-area">
                 <nav>
                     <h4>Mon</h4>
@@ -104,6 +104,7 @@ export default {
             temporary_today: '',
             for_menu_date: '',
 
+            go_back: '',
             for_mon: '',
             for_tue: '',
             for_wed: '',
@@ -268,10 +269,10 @@ export default {
                         self.for_sun = self.for_menu_date       
                     }
                 }
-                self.plusOneday()
+                self.syn_day(1)
             }
 
-            self.backDay()
+            self.syn_day(-7)
 
         },
 
@@ -297,9 +298,9 @@ export default {
         },
 
         //지난주 버튼 이벤트
-        lastWeekEvent(){
+        WeekBtn_Event(go_back){
             var day = new Date(this.temporary_today)
-            var current_day = new Date(day.getTime() - (7 * 24 * 60 * 60 * 1000))
+            var current_day = new Date(day.getTime() + (go_back * 24 * 60 * 60 * 1000))
             var date = current_day.getDate()
             var month = current_day.getMonth() + 1
             var year = current_day.getFullYear()
@@ -312,25 +313,9 @@ export default {
             this.getThisWeekendMenu()
         },
 
-        //다음주 버튼 이벤트
-        nextWeekEvent(){
+        sys_day(go_back){
             var day = new Date(this.temporary_today)
-            var current_day = new Date(day.getTime() + (7 * 24 * 60 * 60 * 1000))
-            var date = current_day.getDate()
-            var month = current_day.getMonth() + 1
-            var year = current_day.getFullYear()
-
-            var standard_day = new Date(year + '/' + month + '/' + date)
-            this.setStartDate(standard_day)
-            this.setEndDate(standard_day)
-            
-
-            this.getThisWeekendMenu()
-        },
-
-        plusOneday(){
-            var day = new Date(this.temporary_today)
-            var current_day = new Date(day.getTime() + (1 * 24 * 60 * 60 * 1000))
+            var current_day = new Date(day.getTime() + (go_back * 24 * 60 * 60 * 1000))
                       
             var date = current_day.getDate()
             var month = current_day.getMonth() + 1
@@ -351,28 +336,6 @@ export default {
             this.startDate = year+'.'+month+'.'+date
             this.for_menu_date = this.startDate.replace(/[.]/g,'')
         },
-
-        backDay(){
-            var day = new Date(this.temporary_today)
-            var current_day = new Date(day.getTime() - (7 * 24 * 60 * 60 * 1000))
-            var date = current_day.getDate()
-            var month = current_day.getMonth() + 1
-            var year = current_day.getFullYear()
-
-            this.temporary_today = year + '/' + month + '/' + date
-
-            if(date<10) {
-               date='0'+date
-            }
-
-            if(month<10) {
-                month='0'+month
-            }
-
-            var standard_day = new Date(year + '/' + month + '/' + date)
-            this.startDate = year+'.'+month+'.'+date
-            this.for_menu_date = this.startDate.replace(/[.]/g,'')
-        }
     },
 
     computed: {
