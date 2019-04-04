@@ -313,7 +313,7 @@ export default {
             this.getThisWeekMenu()
         },
 
-        sys_day(go_back){
+        syn_day(go_back){
             var day = new Date(this.temporary_today)
             var current_day = new Date(day.getTime() + (go_back * 24 * 60 * 60 * 1000))
                       
