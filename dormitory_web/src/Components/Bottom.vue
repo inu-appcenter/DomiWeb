@@ -74,7 +74,7 @@ export default {
         this.today = new Date()
         this.setStartDate(this.today)
         this.setEndDate(this.today)
-        this.getThisWeekendMenu()
+        this.getThisWeekMenu()
     },
 
     data: function() {
@@ -116,7 +116,7 @@ export default {
     },
 
     methods: {
-        putWeekendMenu(){
+        putWeekMenu(){
             var self = this
 
             axios.post('http://117.16.191.242:5630/create',
@@ -167,7 +167,7 @@ export default {
             alert("저장이 완료되었습니다.")
         },
 
-        getThisWeekendMenu(){
+        getThisWeekMenu(){
             var self = this
             axios.post('http://117.16.191.242:5630/read/all',
             {date: [self.for_mon, self.for_tue, self.for_wed, self.for_thu, self.for_fri, self.for_sat, self.for_sun]})
@@ -215,7 +215,7 @@ export default {
                 alert("로그인 해주세요")
             }
             else{
-                self.putWeekendMenu()
+                self.putWeekMenu()
             }
         },
 
@@ -310,7 +310,7 @@ export default {
             this.setEndDate(standard_day)
             
 
-            this.getThisWeekendMenu()
+            this.getThisWeekMenu()
         },
 
         sys_day(go_back){
